@@ -24,6 +24,9 @@
                 <th>
                     Display Order
                 </th>
+                <th>
+
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -35,6 +38,11 @@
                     </td>
                     <td width="30%">
                         @Html.DisplayFor(modelItem => item.DisplayOrder)
+                    </td>
+                    <td width="20%">
+                        <a asp-controller="Category" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary mx-2">
+                            <i class="bi bi-pencil-square"></i> Edit
+                        </a>
                     </td>
                 </tr>
             }
