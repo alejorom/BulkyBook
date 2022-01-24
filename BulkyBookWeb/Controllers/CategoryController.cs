@@ -35,6 +35,7 @@ namespace BulkyBookWeb.Controllers
             if (ModelState.IsValid) { 
                 _context.Categories.Add(category);
                 _context.SaveChanges();
+                TempData["Success"] = "Category created successfully!";
                 return RedirectToAction("Index");
             }
             return View(category);
@@ -68,6 +69,7 @@ namespace BulkyBookWeb.Controllers
             {
                 _context.Categories.Update(category);
                 _context.SaveChanges();
+                TempData["Success"] = "Category updated successfully!";
                 return RedirectToAction("Index");
             }
             return View(category);
@@ -100,6 +102,7 @@ namespace BulkyBookWeb.Controllers
             }
             _context.Categories.Remove(category);
             _context.SaveChanges();
+            TempData["Success"] = "Category deleted successfully!";
             return RedirectToAction(nameof(Index));
         }
     }
