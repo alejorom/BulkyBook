@@ -7,15 +7,15 @@ namespace BulkyBookWeb.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ICategoryRepository _context;
+        private readonly IUnitOfWork _unitOfWok;
 
-        public CategoryController(ICategoryRepository context)
+        public CategoryController(IUnitOfWork unitOfWork)
         {
-            _context = context;
+            _unitOfWok = unitOfWork;
         }
         public IActionResult Index()
         {
-            IEnumerable<Category> CategoryList = _context.GetAll();
+            IEnumerable<Category> CategoryList = _unitOfWok.Category.GetAll();
             return View(CategoryList);
         }
 
@@ -33,9 +33,9 @@ namespace BulkyBookWeb.Controllers
             {
                 ModelState.AddModelError("displayorder", "The DisplayOrder cannot exactly match the Name.");
             }
-            if (ModelState.IsValid) { 
-                _context.Add(category);
-                _context.Save();
+            if (ModelState.IsValid) {
+				_unitOfWok.Category.Add(category);
+				_unitOfWok.Save();
                 TempData["Success"] = "Category created successfully!";
                 return RedirectToAction("Index");
             }
@@ -49,7 +49,7 @@ namespace BulkyBookWeb.Controllers
             {
                 return NotFound();
             }
-            var category = _context.GetFirstOrDefault(u => u.Id == id);
+            var category = _unitOfWok.Category.GetFirstOrDefault(u => u.Id == id);
             if (category == null)
             {
                 return NotFound();
@@ -68,8 +68,8 @@ namespace BulkyBookWeb.Controllers
             }
             if (ModelState.IsValid)
             {
-                _context.Update(category);
-                _context.Save();
+				_unitOfWok.Category.Update(category);
+				_unitOfWok.Save();
                 TempData["Success"] = "Category updated successfully!";
                 return RedirectToAction("Index");
             }
@@ -83,7 +83,7 @@ namespace BulkyBookWeb.Controllers
             {
                 return NotFound();
             }
-            var category = _context.GetFirstOrDefault(u => u.Id == id);
+            var category = _unitOfWok.Category.GetFirstOrDefault(u => u.Id == id);
             if (category == null)
             {
                 return NotFound();
@@ -96,13 +96,13 @@ namespace BulkyBookWeb.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeletePost(int? id)
         {
-            var category = _context.GetFirstOrDefault(u => u.Id == id);
+            var category = _unitOfWok.Category.GetFirstOrDefault(u => u.Id == id);
             if (category == null)
             {
                 return NotFound();
             }
-            _context.Remove(category);
-            _context.Save();
+			_unitOfWok.Category.Remove(category);
+			_unitOfWok.Save();
             TempData["Success"] = "Category deleted successfully!";
             return RedirectToAction(nameof(Index));
         }
