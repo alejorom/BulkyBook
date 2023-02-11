@@ -39,6 +39,7 @@ namespace BulkyBookWeb.Controllers
             if (id == null || id == 0)
             {
                 ViewBag.CategoryList = categoryList;
+                ViewData["CoverTypeList"] = coverTypeList;
             }
             else
             {
