@@ -38,7 +38,7 @@ namespace BulkyBookWeb.Controllers
 
             if (id == null || id == 0)
             {
-
+                ViewBag.CategoryList = categoryList;
             }
             else
             {
