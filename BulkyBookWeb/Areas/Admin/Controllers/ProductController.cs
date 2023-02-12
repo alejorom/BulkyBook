@@ -1,8 +1,10 @@
-﻿using BulkyBook.DataAccess.Repository.IRepository;
+﻿using BulkyBook.DataAccess.Repository;
+using BulkyBook.DataAccess.Repository.IRepository;
 using BulkyBook.Models;
 using BulkyBook.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Hosting;
 
 namespace BulkyBookWeb.Controllers
 {
@@ -19,8 +21,7 @@ namespace BulkyBookWeb.Controllers
         }
         public IActionResult Index()
         {
-            IEnumerable<CoverType> coverTypeList = _unitOfWork.CoverType.GetAll();
-            return View(coverTypeList);
+            return View();
         }
 
         public IActionResult Upsert(int? id)
@@ -108,5 +109,15 @@ namespace BulkyBookWeb.Controllers
             TempData["Success"] = "CoverType deleted successfully!";
             return RedirectToAction(nameof(Index));
         }
+
+        #region API CALLS
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            var productList = _unitOfWork.Product.GetAll();
+            return Json(new { data = productList });
+        }
+
+        #endregion
     }
 }
