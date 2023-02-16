@@ -27,6 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Admin\Views\Company\" />
     <Folder Include="wwwroot\images\products\" />
   </ItemGroup>
 
