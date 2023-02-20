@@ -13,7 +13,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(
     builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddDefaultTokenProviders()
+builder.Services.AddDefaultIdentity<IdentityUser>()
 	.AddEntityFrameworkStores<ApplicationDBContext>();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
