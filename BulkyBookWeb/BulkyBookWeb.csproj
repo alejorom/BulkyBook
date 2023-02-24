@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <None Remove="appsettings.json~RF1f1453e2.TMP" />
+    <None Remove="Areas\Customer\Controllers\CartController.cs~RFc6a5e99.TMP" />
   </ItemGroup>
 
   <ItemGroup>
