@@ -1,13 +1,15 @@
 ﻿var dataTable;
 
 $(document).ready(function () {
-    loadDataTable();
+    var urlParams = new URLSearchParams(window.location.search);
+    var status = urlParams.get('status');
+    loadDataTable(status);
 });
 
 function loadDataTable(status) {
     dataTable = $('#tblData').DataTable({
         "ajax": {
-            "url": "/Admin/Order/GetAll"
+            "url": "/Admin/Order/GetAll?status=" + status
         },
         "columns": [
             { "data": "id", "width": "5%" },
