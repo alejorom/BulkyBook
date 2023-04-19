@@ -248,7 +248,7 @@
                                 if (Model.OrderHeader.OrderStatus == SD.StatusInProcess)
                                 {
                                     <input type="submit" onclick="return validateInput()"
-                                   asp-action="ShipOrder" class="btn btn-primary form-control my-1" value="Ship Order" />
+                                        asp-action="ShipOrder" class="btn btn-primary form-control my-1" value="Ship Order" />
                                 }
 
                                 @if (Model.OrderHeader.OrderStatus != SD.StatusRefunded &&
@@ -265,3 +265,28 @@
         </div>
     </div>
 </form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+	    function validateInput(){
+		    if(document.getElementById("trackingNumber").value==""){
+			    Swal.fire({
+			      icon: 'error',
+			      title: 'Oops...',
+			      text: 'Please enter tracking number!',
+			    });
+			    return false;
+		    }
+		    if(document.getElementById("carrier").value==""){
+			    Swal.fire({
+			      icon: 'error',
+			      title: 'Oops...',
+			      text: 'Please enter carrier!',
+			    });
+			    return false;
+		    }
+		    return true;
+	    }
+    </script>
+}
