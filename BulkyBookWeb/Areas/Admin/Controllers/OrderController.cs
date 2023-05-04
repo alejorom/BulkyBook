@@ -231,6 +231,5 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
         }
 
         #endregion
-
     }
 }
