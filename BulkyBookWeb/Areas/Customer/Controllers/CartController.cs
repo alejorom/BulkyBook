@@ -123,8 +123,8 @@ namespace BulkyBookWeb.Areas.Customer.Controllers
 
 			if (applicationUser.CompanyId.GetValueOrDefault() == 0)
 			{
-				// Utilizar STRIPE
-				var domain = "https://localhost:44331/";
+                // Stripe logic
+                var domain = Request.Scheme + "://"+ Request.Host.Value +"/";
 				var options = new SessionCreateOptions
 				{
 					PaymentMethodTypes = new List<string>
